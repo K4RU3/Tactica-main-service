@@ -1,11 +1,9 @@
-FROM node:lts-slim
-
-ENV PORT 8080
+FROM gcc:latest
 
 COPY package*.json ./
 
-RUN npm install --only=production
-
 COPY . ./
 
-CMD [ "npm", "start" ]
+RUN g++ -o main main.cpp
+
+CMD [ "./main" ]
