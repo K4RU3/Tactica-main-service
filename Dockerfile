@@ -1,9 +1,9 @@
-FROM gcc:latest
+FROM gcr.io/cloudrun/debian:11
 
-COPY package*.json ./
+RUN apt-get update && apt-get install -y build-essential
 
-COPY . ./
+COPY . /app
 
-RUN g++ -o main main.cpp
+RUN cd /app && g++ main.cpp -o server -std=c++17 -lboost_system -lboost_thread -lboost_asio -lboost_beast
 
-CMD [ "./main" ]
+CMD ["./server"]
