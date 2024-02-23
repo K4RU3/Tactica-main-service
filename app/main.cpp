@@ -19,8 +19,6 @@ int main(){
 
     app.Get('/', handleGet);
 
-    app.Post('/', handlePost);
-
     app.listen("0.0.0.0", 8080);
 
     return 0;
