@@ -1,17 +1,27 @@
 #include "httplib.h"
 #include <iostream>
+#include <vector>
+#include <mutex>
+#include <string>
 
-int main() {
-    // Create an HTTP server
-    httplib::Server svr;
+using namespace std;
 
-    // Define a handler for the root path
-    svr.Get("/", [](const httplib::Request& req, httplib::Response& res) {
-        res.set_content("Hello, World!", "text/plain");
-    });
+void handleGet(const httplib::Request& req, httplib::Response& res){
+    res.send("test")
+}
 
-    // Start the server on port 8080
-    svr.listen("0.0.0.0", 8080);
+void handlePost(const httplib::Request& req, httplib::Response& res){
+
+}
+
+int main(){
+    httplib::Server app;
+
+    app.Get('/', handleGet);
+
+    app.Post('/', handlePost);
+
+    app.listen("0.0.0.0", 8080);
 
     return 0;
 }
