@@ -1,9 +1,17 @@
+#include <httplib.h>
 #include <iostream>
-#include <string>
 
-using namespace std;
+int main() {
+    // Create an HTTP server
+    httplib::Server svr;
 
-int main(){
-    cout << "test" << endl;
+    // Define a handler for the root path
+    svr.Get("/", [](const httplib::Request& req, httplib::Response& res) {
+        res.set_content("Hello, World!", "text/plain");
+    });
+
+    // Start the server on port 8080
+    svr.listen("0.0.0.0", 8080);
+
     return 0;
 }

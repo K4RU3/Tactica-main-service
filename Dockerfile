@@ -1,11 +1,11 @@
-FROM gcr.io/cloudrun/debian:11
+FROM gcc:latest
 
-WORKDIR ./
+WORKDIR ./app
 
-RUN apt-get update && apt-get install -y build-essential
+COPY . .
 
-COPY . /app
+RUN apt-get update && apt-get install -y libssl-dev
 
-RUN cd /app && g++ ./app/main.cpp -o main -lstdc++
+RUN gcc main.cpp -o main -lstdc++
 
 CMD ["./main"]
