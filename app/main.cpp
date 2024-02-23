@@ -10,10 +10,6 @@ void handleGet(const httplib::Request& req, httplib::Response& res){
     res.send("test")
 }
 
-void handlePost(const httplib::Request& req, httplib::Response& res){
-
-}
-
 int main(){
     httplib::Server app;
 
