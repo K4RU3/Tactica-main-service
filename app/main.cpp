@@ -5,7 +5,7 @@
 using namespace std;
 
 void handleGet(const httplib::Request& req, httplib::Response& res){
-    res.send("test", "text/plain")
+    res.set_content("test", "text/plain");
 }
 
 int main(){
