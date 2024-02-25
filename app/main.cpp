@@ -1,19 +1,36 @@
-#include "httplib.h"
 #include <iostream>
+#include "uuid_v4.h"
+#include "httplib.h"
 #include <string>
+#include <thread>
+#include <chrono>
 
 using namespace std;
+using namespace httplib;
 
-void handleGet(const httplib::Request& req, httplib::Response& res){
-    res.set_content("test", "text/plain");
-}
+//定義域
+UUIDv4::UUIDGenerator<mt19937_64> uuidGenerator;
 
 int main(){
-    httplib::Server app;
+    Server app;
 
-    app.Get("/", handleGet);
+    app.set_default_headers({
+        {"Access-Control-Allow-Origin", "*"}
+    });
 
-    app.listen("0.0.0.0", 8080);
+    app.Get("/", [](const Request& req, Response& res){
+        try{
+            int count = stoi(req.get_param_value("count"));
+            string value;
+            for(int i = 0; i < count; i++){
+                value += uuidGenerator.getUUID().str() + "\n";
+            }
+            res.set_content(value, "text/plain");
+        }catch(const exception& e){
+            res.set_content("Invlid the body", "text/plain");
+        }
+    });
 
+    app.listen("localhost", 8080);
     return 0;
 }
