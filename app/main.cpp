@@ -6,7 +6,7 @@
 
 #include <uuid_v4.h>
 #include <httplib.h>
-#include <boost/beast/beast.hpp>
+#include <beast.hpp>
 
 using namespace std;
 using namespace httplib;
