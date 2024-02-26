@@ -4,8 +4,9 @@
 #include <thread>
 #include <chrono>
 
-#include "uuid_v4.h"
-#include "httplib.h"
+#include <uuid_v4.h>
+#include <httplib.h>
+#include <boost/beast/beast.hpp>
 
 using namespace std;
 using namespace httplib;
@@ -31,29 +32,6 @@ int main(){
         }catch(const exception& e){
             res.set_content(uuidGenerator.getUUID().str(), "text/plain");
         }
-    });
-
-    app.Get("/sse", [](const Request& req, Response& res){
-        int count;
-        try{
-            count = stoi(req.get_param_value("count"));
-        }catch(const exception& e){
-            count = 10;
-        }
-
-        res.set_header("Content-Type", "text/event-stream");
-
-        res.set_chunked_content_provider(
-            "text/event-stream",
-            [&count](size_t offset, DataSink &sink){
-                for(int i = 0; i < count; i++){
-                    this_thread::sleep_for(chrono::seconds(1));
-                    string uuid = "data: " + uuidGenerator.getUUID().str() + "\n\n";
-                    sink.write(uuid.c_str(), uuid.size());
-                }
-                return true;
-            }
-        );
     });
 
     thread server([&app](){
