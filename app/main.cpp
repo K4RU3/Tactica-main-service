@@ -1,9 +1,11 @@
 #include <iostream>
-#include "uuid_v4.h"
-#include "httplib.h"
 #include <string>
+#include <fstream>
 #include <thread>
 #include <chrono>
+
+#include "uuid_v4.h"
+#include "httplib.h"
 
 using namespace std;
 using namespace httplib;
@@ -31,6 +33,11 @@ int main(){
         }
     });
 
-    app.listen("localhost", 8080);
+    thread server([&app](){
+        app.listen("localhost", 8080);
+    });
+
+    server.join();
+    
     return 0;
 }
