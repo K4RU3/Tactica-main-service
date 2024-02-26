@@ -5,40 +5,59 @@
 #include <chrono>
 
 #include <uuid_v4.h>
-#include <httplib.h>
-#include <beast.hpp>
+#include <boost/asio.hpp>
 
 using namespace std;
-using namespace httplib;
+using boost::asio::ip::tcp;
 
 //定義域
 UUIDv4::UUIDGenerator<mt19937_64> uuidGenerator;
 
-int main(){
-    Server app;
-
-    app.set_default_headers({
-        {"Access-Control-Allow-Origin", "*"}
-    });
-
-    app.Get("/", [](const Request& req, Response& res){
-        try{
-            int count = stoi(req.get_param_value("count"));
-            string value;
-            for(int i = 0; i < count; i++){
-                value += uuidGenerator.getUUID().str() + "\n";
-            }
-            res.set_content(value, "text/plain");
-        }catch(const exception& e){
-            res.set_content(uuidGenerator.getUUID().str(), "text/plain");
+/* ===== Class ===== */
+class Server{
+public:
+    Server(boost::asio::io_context& io, short port)
+        :_acceptor(io, tcp::endpoint(tcp::v4(), port)),
+        _socket(io)
+        {
+            accept();
         }
-    });
 
-    thread server([&app](){
-        app.listen("0.0.0.0", 8080);
-    });
+private:
+    void accept(){
+        _acceptor.async_accept(_socket,
+            [this](boost::system::error_code ec){
+                if(!ec){
+                    make_shared<Session>(move(_socket))->start();
+                }
+                accept();
+            });
+    }
 
-    server.join();
+    tcp::acceptor _acceptor;
+    tcp::socket _socket;
+};
+
+class Session : public enable_shared_from_this<Session>{
+public:
+    Session(tcp::socket socket) : _socket(move(socket)) {}
+
+    void start(){
+        read();
+    }
+
+private:
+    void read(){
+        auto self(shared_from_this());
+        
+    }
+
+    tcp::socket _socket;
+};
+
+/* ===== main ===== */
+int main(){
+    
 
     return 0;
 }
