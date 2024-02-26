@@ -41,12 +41,14 @@ int main(){
             count = 10;
         }
 
+        res.set_header("Content-Type", "text/event-stream");
+
         res.set_chunked_content_provider(
-            "test/plain",
+            "text/event-stream",
             [&count](size_t offset, DataSink &sink){
                 for(int i = 0; i < count; i++){
                     this_thread::sleep_for(chrono::seconds(1));
-                    string uuid = uuidGenerator.getUUID().str();
+                    string uuid = "data: " + uuidGenerator.getUUID().str() + "\n\n";
                     sink.write(uuid.c_str(), uuid.size());
                 }
                 return true;
