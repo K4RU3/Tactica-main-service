@@ -6,6 +6,10 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
     gfortran \
+    && rm -rf /var/lib/apt/lists/*
+
+# libcoarrays 関連のパッケージのインストール
+RUN apt-get update && apt-get install -y \
     libcoarrays-dev:amd64 \
     libcoarrays-openmpi-dev:amd64 \
     && rm -rf /var/lib/apt/lists/*
