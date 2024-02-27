@@ -5,6 +5,9 @@ RUN apt-get update && apt-get install -y \
     libboost-all-dev \
     build-essential \
     libssl-dev \
+    gfortran \   # 追加
+    libcoarrays-dev:amd64 \   # 追加
+    libcoarrays-openmpi-dev:amd64 \   # 追加
     && rm -rf /var/lib/apt/lists/*
 
 COPY . .
