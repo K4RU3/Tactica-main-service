@@ -18,7 +18,6 @@
             "cppStandard": "c++17",
             "intelliSenseMode": "windows-msvc-x64"
         },
-
         {
             "name": "Mac",
             "includePath": [
@@ -33,7 +32,18 @@
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++20",
-            "intelliSenseMode": "macos-clang-arm64"
+            "intelliSenseMode": "macos-gcc-x64",
+            "compilerPathInCppPropertiesJson": "/usr/bin/clang",
+            "mergeConfigurations": false,
+            "browse": {
+                "path": [
+                    "/Users/yuki/Desktop/Project/Tactica-main-service/**",
+                    "/Users/yuki/Desktop/Project/Tactica-main-service/app/lib",
+                    "/opt/homebrew/Cellar/boost/1.82.0_1/include",
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4
