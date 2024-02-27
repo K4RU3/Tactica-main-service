@@ -1,14 +1,12 @@
-FROM gcc:latest
+FROM debian:latest
 
 # 必要なパッケージのインストール
 RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y \
     libssl-dev \
-    gfortran \
+    libboost-all-dev \
     && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get install -y libboost-all-dev
 
 COPY . .
 
