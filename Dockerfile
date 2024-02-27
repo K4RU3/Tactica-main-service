@@ -1,7 +1,7 @@
 FROM gcc:latest
 
 # 必要なパッケージのインストール
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && sudo apt-get install -y \
     libboost-all-dev \
     libssl-dev \
     && rm -rf /var/lib/apt/lists/*
