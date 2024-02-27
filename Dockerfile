@@ -3,7 +3,7 @@ FROM gcc:latest
 # 必要なパッケージのインストール
 RUN apt-get update && apt-get upgrade -y
 
-RUN sudo apt-get install -y libboost-all-dev
+RUN apt-get install -y libboost-all-dev
 
 RUN apt-get install -y \
     libssl-dev \
