@@ -3,8 +3,6 @@
 #include <boost/beast.hpp>
 #include <uuid_v4.h>
 
-#include "Room.cpp"
-
 using namespace std;
 using boost::asio::ip::tcp;
 
@@ -25,7 +23,4 @@ public:
     void removeRoom(UUIDv4::UUID){
 
     }
-
-private:
-    map<UUIDv4::UUID, Room> roomList;
 };
