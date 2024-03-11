@@ -1,0 +1,103 @@
+{
+    "type": "object",
+    "properties": {
+        "tickrate": {
+            "type": "integer"
+        },
+        "defaultStatus": {
+            "type": "object",
+            "properties": {
+                "MAXHP": {
+                    "type": "integer"
+                },
+                "ATTACK": {
+                    "type": "integer"
+                },
+                "DEFENSE": {
+                    "type": "integer"
+                },
+                "COOLDOWN": {
+                    "type": "integer"
+                },
+                "ACCURACY": {
+                    "type": "number"
+                },
+                "AVOID": {
+                    "type": "number"
+                },
+                "CRITRATE": {
+                    "type": "integer"
+                },
+                "CRITDMG": {
+                    "type": "integer"
+                },
+                "DAMAGERATE": {
+                    "type": "object",
+                    "properties": {
+                        "NORMAL": {
+                            "type": "integer"
+                        },
+                        "FIRE": {
+                            "type": "integer"
+                        },
+                        "ICE": {
+                            "type": "integer"
+                        },
+                        "CURSE": {
+                            "type": "integer"
+                        },
+                        "HOLY": {
+                            "type": "integer"
+                        },
+                        "AIR": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "NORMAL",
+                        "FIRE",
+                        "ICE",
+                        "CURSE",
+                        "HOLY",
+                        "AIR"
+                    ]
+                }
+            },
+            "required": [
+                "MAXHP",
+                "ATTACK",
+                "DEFENSE",
+                "COOLDOWN",
+                "ACCURACY",
+                "AVOID",
+                "CRITRATE",
+                "CRITDMG",
+                "DAMAGERATE"
+            ]
+        },
+        "diceP1": {
+            "type": "number"
+        },
+        "diceP2": {
+            "type": "number"
+        },
+        "diceP3": {
+            "type": "number"
+        },
+        "diceP4": {
+            "type": "number"
+        },
+        "diceP5": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "tickrate",
+        "defaultStatus",
+        "diceP1",
+        "diceP2",
+        "diceP3",
+        "diceP4",
+        "diceP5"
+    ]
+}

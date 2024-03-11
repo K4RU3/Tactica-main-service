@@ -1,0 +1,26 @@
+{
+    "tickrate": 60,
+    "defaultStatus": {
+        "MAXHP": 10000,
+        "ATTACK": 100,
+        "DEFENSE": 50,
+        "COOLDOWN": 300000,
+        "ACCURACY": 0.8,
+        "AVOID": 0.2,
+        "CRITRATE": 0,
+        "CRITDMG": 1,
+        "DAMAGERATE": {
+            "NORMAL": 1,
+            "FIRE": 1,
+            "ICE": 1,
+            "CURSE": 1,
+            "HOLY": 1,
+            "AIR": 1
+        }
+    },
+    "diceP1": 0.5,
+    "diceP2": 0.8,
+    "diceP3": 0.9,
+    "diceP4": 0.95,
+    "diceP5": 0.99
+}
